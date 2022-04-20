@@ -9,6 +9,7 @@ interface ItemProps {
 class Item extends Component<ItemProps> {
   state = {
     hex: this.props.value + "",
+    value: this.props.value,
   };
 
   handleToHexValue(value: number) {
