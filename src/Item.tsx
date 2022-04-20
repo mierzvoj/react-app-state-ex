@@ -8,12 +8,11 @@ interface ItemProps {
 
 class Item extends Component<ItemProps> {
   state = {
-    hex: this.props.value,
+    hex: this.props.value + "",
   };
 
   handleToHexValue(value: number) {
-    // const h = parseInt(value, 10).toSring(16);
-    this.setState({ hex: this.state.hex + 1 });
+    this.setState({ hex: value.toString(16) });
   }
 
   handleDelete(itemId: number, hadnlerFn: (val: number) => void) {
