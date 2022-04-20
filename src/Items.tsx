@@ -31,10 +31,9 @@ class Items extends React.Component {
 
   setNewValue() {
     const items = [...this.state.items];
-    let newVal = {} as Items;
-    newVal.value = 0;
+
     for (let i = 0; i < items.length; i++) {
-      this.setState({ newVal });
+      this.setState({ ...this.state.items, id: 3, value: 0 });
     }
   }
 
@@ -44,11 +43,7 @@ class Items extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {
-          <button type="button" onClick={() => this.setZeroes}>
-            Zeroes
-          </button>
-        }
+        {}
         {this.state.items.map((item) => (
           <Item
             key={item.id}

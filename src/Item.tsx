@@ -19,9 +19,17 @@ class Item extends Component<ItemProps> {
     hadnlerFn(itemId);
   }
 
+  handleZeroes(value: number) {
+    this.setState({ value: (value = 0) });
+  }
+
   render() {
     return (
       <div>
+        <button onClick={() => this.handleZeroes(this.props.value)}>
+          Zeroes
+        </button>
+
         <button onClick={() => this.handleToHexValue(this.props.value)}>
           Go for Hex {this.state.hex}
         </button>
