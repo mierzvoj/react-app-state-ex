@@ -19,7 +19,7 @@ class Items extends Component {
 
   handleDelete(itemId) {
     const items = [...this.state.items];
-    var index = items.findIndex(i => i.id === itemId);
+    var index = items.findIndex((i) => i.id === itemId);
     if (index !== -1) {
       items.splice(index, 1);
       this.setState({ items });
