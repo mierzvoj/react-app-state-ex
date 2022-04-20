@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 class Item extends Component {
   state = {
-    count: this.props.value,
+    hex: this.props.value,
   };
 
-  handleToHexValue = (e) => {
-    this.setState({ count: this.state.count.toSring(16) });
+  handleToHexValue(value) {
+    // const h = parseInt(value, 10).toSring(16);
+    this.setState({ hex: this.state.hex + 1 });
   };
 
   handleDelete(itemId, hadnlerFn) {
@@ -17,11 +18,9 @@ class Item extends Component {
     return (
       <div>
         <button
-          onClick={(item) => {
-            this.handleToHexValue({ item });
-          }}
+          onClick={() => this.handleToHexValue(this.props.value)}
         >
-          Go for Hex
+          Go for Hex {this.state.hex}
         </button>
         <button onClick={() => this.handleDelete(this.props.id, this.props.handler)}>
           Delete
