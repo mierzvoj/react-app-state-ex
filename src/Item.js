@@ -8,13 +8,9 @@ class Item extends Component {
   handleToHexValue = (e) => {
     this.setState({ count: this.state.count.toSring(16) });
   };
-  handleDelete(itemId) {
-    var array = [...this.state.items];
-    var index = array.indexOf(itemId.value);
-    if (index !== -1) {
-      array.splice(index);
-      this.setState({ items: array });
-    }
+
+  handleDelete(itemId, hadnlerFn) {
+    hadnlerFn(itemId);
   }
 
   render() {
@@ -27,7 +23,7 @@ class Item extends Component {
         >
           Go for Hex
         </button>
-        <button onClick={() => this.props.handleDelete(this.props.item.id)}>
+        <button onClick={() => this.handleDelete(this.props.id, this.props.handler)}>
           Delete
         </button>
       </div>

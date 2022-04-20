@@ -17,11 +17,22 @@ class Items extends Component {
     ],
   };
 
+  handleDelete(itemId) {
+    const items = [...this.state.items];
+    var index = items.findIndex(i => i.id === itemId);
+    if (index !== -1) {
+      items.splice(index, 1);
+      this.setState({ items });
+    }
+  }
+
+  deleteHandler = (itemId) => this.handleDelete(itemId);
+
   render() {
     return (
       <React.Fragment>
         {this.state.items.map((item) => (
-          <Item key={item.id} value={item.value} />
+          <Item key={item.id} id={item.id} handler={this.deleteHandler} />
         ))}
       </React.Fragment>
     );
