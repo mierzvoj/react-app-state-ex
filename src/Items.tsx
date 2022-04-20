@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Item from "./Item";
 
-class Items extends Component {
+class Items extends React.Component {
   // const items = [];
   // getRandom = () => Math.floor(Math.random() * 20) + 1;
 
@@ -14,6 +14,9 @@ class Items extends Component {
       { id: 1, value: 0 },
       { id: 2, value: 20 },
       { id: 3, value: 45 },
+      { id: 4, value: 45 },
+      { id: 5, value: 45 },
+      { id: 6, value: 45 },
     ],
   };
 
@@ -26,11 +29,26 @@ class Items extends Component {
     }
   }
 
+  setNewValue() {
+    const items = [...this.state.items];
+    let newVal = {} as Items;
+    newVal.value = 0;
+    for (let i = 0; i < items.length; i++) {
+      this.setState({ newVal });
+    }
+  }
+
   deleteHandler = (itemId: number) => this.handleDelete(itemId);
+  setZeroes = () => this.setNewValue();
 
   render() {
     return (
       <React.Fragment>
+        {
+          <button type="button" onClick={() => this.setZeroes}>
+            Zeroes
+          </button>
+        }
         {this.state.items.map((item) => (
           <Item
             key={item.id}
