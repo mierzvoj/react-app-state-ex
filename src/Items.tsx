@@ -1,59 +1,61 @@
-import React from "react";
+import React, {useState} from "react";
 import Item from "./Item";
 
 class Items extends React.Component {
-  // const items = [];
-  // getRandom = () => Math.floor(Math.random() * 20) + 1;
 
-  // for(let i = 0; i < 10; i++) {
-  //   items.push(getRandom());
-  // }
 
-  state = {
-    items: [
-      { id: 1, value: 0 },
-      { id: 2, value: 20 },
-      { id: 3, value: 45 },
-      { id: 4, value: 45 },
-      { id: 5, value: 45 },
-      { id: 6, value: 45 },
-    ],
-  };
 
-  handleDelete(itemId: number) {
-    const items = [...this.state.items];
-    var index = items.findIndex((i) => i.id === itemId);
-    if (index !== -1) {
-      items.splice(index, 1);
-      this.setState({ items });
+    state = {
+        items: [
+            {id: 1, value: Math.floor(Math.random() * 20) + 1},
+            {id: 2, value: Math.floor(Math.random() * 20) + 1},
+            {id: 3, value: Math.floor(Math.random() * 20) + 1},
+            {id: 4, value: Math.floor(Math.random() * 20) + 1},
+            {id: 5, value: Math.floor(Math.random() * 20) + 1},
+            {id: 6, value: Math.floor(Math.random() * 20) + 1},
+            {id: 7, value: Math.floor(Math.random() * 20) + 1},
+            {id: 8, value: Math.floor(Math.random() * 20) + 1},
+            {id: 9, value: Math.floor(Math.random() * 20) + 1},
+            {id: 10, value: Math.floor(Math.random() * 20) + 1},
+        ],
+    };
+
+    handleDelete(itemId: number) {
+        const items = [...this.state.items];
+        var index = items.findIndex((i) => i.id === itemId);
+        if (index !== -1) {
+            items.splice(index, 1);
+            this.setState({items});
+        }
     }
-  }
 
-  setNewValue() {
-    const items = [...this.state.items];
-
-    for (let i = 0; i < items.length; i++) {
-      this.setState({ ...this.state.items, id: 3, value: 0 });
+    refreshThePage(): void{
+        window.location.reload();
     }
-  }
 
-  deleteHandler = (itemId: number) => this.handleDelete(itemId);
-  setZeroes = () => this.setNewValue();
 
-  render() {
-    return (
-      <React.Fragment>
-        {}
-        {this.state.items.map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            handler={this.deleteHandler}
-            value={item.value}
-          />
-        ))}
-      </React.Fragment>
-    );
-  }
+    deleteHandler = (itemId: number) => this.handleDelete(itemId);
+
+    refreshHandler =() => this.refreshThePage();
+
+    render() {
+        return (
+            <>
+
+                {this.state.items.map((item) => (
+                    <Item
+                        // key={item.id}
+                        id={item.id}
+                        handler={this.deleteHandler}
+                        value={item.value}
+
+                    />
+
+                ))}
+                <button onClick={ () => this.refreshThePage()}>Refresh</button>
+            </>
+        );
+    }
 }
+
 export default Items;
